@@ -225,8 +225,14 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  let copy = '';
+  arr.map((el) => {
+    if (arr.indexOf(el) < arr.length - 1) copy += `${el}\n`;
+    else copy += el;
+    return copy;
+  });
+  return copy;
 }
 
 /**
@@ -264,8 +270,8 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  return arr.reduce((acc, val, index) => [...acc, val + (acc[index - 1] || 0)], []);
 }
 
 /**
@@ -279,8 +285,13 @@ function getMovingSum(/* arr */) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  const copy = [];
+  arr.map((el) => {
+    if (arr.indexOf(el) % 2) copy.push(el);
+    return copy;
+  });
+  return copy;
 }
 
 
@@ -298,8 +309,11 @@ function getSecondItems(/* arr */) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.reduce((acc, val, i) => {
+    acc.push(...Array(i + 1).fill(val));
+    return acc;
+  }, []);
 }
 
 
@@ -316,8 +330,9 @@ function propagateItemsByPositionIndex(/* arr */) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  const res = arr.sort((a, b) => b - a).slice(0, 3);
+  return res;
 }
 
 
@@ -334,8 +349,13 @@ function get3TopItems(/* arr */) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  let count = 0;
+  arr.map((el) => {
+    if (el > 0 && typeof el === 'number') count += 1;
+    return count;
+  });
+  return count;
 }
 
 /**
